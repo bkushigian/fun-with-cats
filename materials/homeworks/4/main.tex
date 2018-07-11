@@ -1,0 +1,335 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{preamble.tex}
+
+\title{\normalfont\normalsize 
+\textsc{Umass Amherst} \\ [10pt]% Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Fun With Cats --- Homework 4 \\
+\normalsize Epis, Monos, and Abstract Structures
+\horrule{2pt} \\[-0.8cm] % Thick bottom horizontal rule
+}
+\author{}
+\date{\normalsize\today}
+\begin{document}
+\maketitle
+
+\section{Exercises}
+
+\setcounter{booksection}{2}
+\showsolutionstrue
+%%% 2.13
+\begin{BookProblem}{13}
+  In any category with binary products, show directly that \[A \times (B \times
+  C) \cong (A \times B) \times C \]
+
+  \begin{Solution}
+    This follows from the UMPs of \(A\times (B \times C)\), \((A \times B)\times
+    C\), and \(A \times B \times C\). Note that there exists a unique \(u\)
+    making the following (rather ugly) diagram commute:
+
+
+    \begin{equation}
+      \def\piA{\ar[ddl]_{\pi_A}}
+      \def\piBC{\ar[dr]^{\pi_{B\times C}}}
+      \def\piB{\ar@/^4.2pc/[ddl]^{\pi_B}}
+      \def\piC{\ar[d]_{\pi_C}}
+      \def\pA{\ar[l]_{p_A}}
+      \def\pB{\ar[d]_{p_B}}
+      \def\pC{\ar[r]^{p_C}}
+      \def\ps{\pA\pB\pC}
+      \def\induced{\ar@{..>}[dd]^u}
+      \xymatrix{%
+        & A \times (B \times C)\piA\piBC\induced &  \\
+          &                                & B \times C\piB\piC\\
+        A & A \times B \times C\ps         & C \\
+          &          B                     &
+      }
+    \end{equation}
+
+    Likewise we have a unique arrow \(u'\) making the following (even uglier)
+    diagram commute.
+
+    \begin{equation}
+      \def\pC{\ar[ddr]^{p_C}}
+      \def\pAB{\ar[dl]_{p_A \times p_B}}
+      \def\ppA{\ar@/_4.2pc/[ddr]^{p'_A}}
+      \def\ppB{\ar[d]^{p'_B}}
+      \def\piAB{\ar[ul]_{\pi_{A\times B}}}
+      \def\piC{\ar[r]^{\pi_C}}
+      \def\pis{\piAB\piC}
+      \def\induced{\ar@{..>}[dd]^{u'}}
+      \xymatrix{%
+                            & A \times B \times C\pAB\pC\induced     &  \\
+        A \times B \ppA\ppB &                                & \\
+        A                   & (A \times B) \times C\pis      & C \\
+                            &          B                     &
+      }
+    \end{equation}
+
+    We have a unique
+  \end{Solution}
+\end{BookProblem}
+
+\clearpage
+%%% 2.14
+\begin{BookProblem}{14}
+  \begin{enumerate}[(a)]
+    \item For any index set \(I\), define the product \(\prod_{i \in I}X_i\) of
+      an \(I\)-indexed family of objects \((X_i)_{i \in I}\) in a category, by
+      giving a UMP generalizing that for binary products (the case \(I = 2\)).
+    \item Show that in \(\Sets\), for any set \(X\) the set \(X^I\) of all
+      functions \(f : I \to X\) has the UMP, with respect to the ``constant
+      family'' where \(X_i = X\) for all \(i \in I\), and thus
+
+      \[X^I \cong \prod_{i \in I}X.\]
+  \end{enumerate}
+  \begin{Solution}
+    \begin{enumerate}[(a)]
+      %%% SOLUTION FOR (A)
+      \item The product \(\prod_{i \in I} X_i\) is a collection of diagrams
+        \begin{equation}
+          \Pi_I \xto{\pi_i}X_i,\quad i \in I
+        \end{equation}
+        such that for any other collection of diagrams
+        \begin{equation}
+          T \xto{f_i}X_i,\quad i \in I
+        \end{equation}
+        there is a unique \(u : T \to \Pi_I\) making all induced subdiagrams
+        commute:
+        \begin{equation}
+          \xymatrix{
+            X\ar[d]^u\ar[dr]^{f_i} & \\
+            \Pi_I\ar[r]_{\pi_i} & X_i
+          }
+        \end{equation}
+
+      %%% SOLUTION FOR (B)
+      \item Consider sets \(X\) and \(I\), and consider the set of functions
+        \(X^I\) of all functions \(I \to X\). We set up our diagram
+        \begin{equation}
+          %\xymatrix{ }
+        \end{equation}
+    \end{enumerate}
+
+  \end{Solution}
+\end{BookProblem}
+
+\clearpage
+%%% 2.17
+\begin{BookProblem}{17}
+  In any category \(\C\) with products, define the \textbf{graph} of an arrow
+  \(f : A \to B\) to be the monomorphism
+  \[\Gamma(f) = \langle 1_A, f\rangle : A \mono A \times B\]
+  (Why is this monic?). Show that for \(\C = \Sets\) this determines a functor
+  \(\Gamma : \Sets \to \Rel\) to the category \(\Rel\) of relations, as defined
+  in the exercies to Chapter 1. (To get an actual relation \(R(f) \subset A
+  \times B\), take the image of \(\Gamma(f) : A \mono A \times B\).)
+  \begin{Solution}
+    To show that \(\Gamma(f)\) is monic, consider \(X \doublerightarrow{a}{b} A
+    \xto{\Gamma(f)} A \times B \xto{p_A} A\), with \(p_A\) the projection
+    map\ldots\\
+
+    Now we wish to show that \(\Gamma(f)\) determines a functor from \(\Sets \to
+    \Rel\). Recall that the objects of \(\Rel\) are sets and the arrows \(A \to
+    B\) are binary relations \(R \subseteq A \times B\). Take the object map
+    \(\Gamma_\obj\) to map sets to themselves, and define the hom map by
+    \(\Gamma_{\hom} (f: A \to B) = \Gamma(f)(A) = \{(a, f(a)) : a \in A\}\).\\
+
+    Identity maps go to identity relations, and composition works as expected:
+    for \(g : B \to C\) we have \(\Gamma(g\circ f)(A) = \{(a, g(f(a))) : a \in
+    A\} = \{(g, g(b)) : b \in B\} \circ_\Rel \{(a, f(a)) : a \in A\} = \Gamma(g)
+    \circ_\Rel \Gamma(f)\).
+
+  \end{Solution}
+\end{BookProblem}
+
+\clearpage
+%%% 2.18
+\begin{BookProblem}{18}
+  Show that the forgetful functor \(U : \Mon \to \Sets\) from monoids to sets is
+  representable. Infer that \(U\) preserves all (small) products.
+  \begin{Solution}
+    \note{I haven't checked this proof too carefuly and there might be some
+    subtleties I didn't notice---take with a grain of salt. In particular, this
+    may not hold for general representable functors and we need to bring in some
+    domain specific properties of \(\Mon\) or \(\Sets\) to complete the proof.
+    Even so, if such corrections need be made we should be able to tweak the
+    following proof appropriately.}\\
+
+    Consider the functor \(F = \hom(M(1), -)\). For a monoid \(N\) there is
+    precisely one monoid homomorphism \(\varphi_x : M(1) \to N\) mapping \(1
+    \mapsto x\) for each \(x \in N\); that is, there is a bijection between
+    the image of \(\hom(M(1), N)\) and the underlying set \(|N| = U(N)\), call
+    it \(\eta : F(N)(N) \cong |N|\). Then \(\eta \circ F = U\) and \(U\)
+    is representable (up to an iso).\\
+
+    To prove that \(U\) preserves small products we update the function
+    \(\varphi_X\) defined in \S2.7 to operate on small product diagrams: for object
+    \(P\) and \(I\)-indexed family of objects \({(A_i)}_{i \in I}\) with arrows
+    \({(p_i : P \to A_i)}_{i \in I}\), and for object \(X\), define 
+    %
+    \[\varphi_X : \hom(X, P) \to \prod_{i \in I} \hom(X, A_i)\]
+    %
+    by
+    %
+    \[\varphi_X(x:X \to P) = {(p_i \circ x)}_{i \in I}.\]
+
+    Then the proof of Proposition 2.20 is the same, and Corollary 2.22 follows;
+    in particular, representable functors preserve small products.\qed{}
+  \end{Solution}
+\end{BookProblem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{booksection}{3}
+\clearpage
+%%% 3.1
+\begin{BookProblem}{1}
+  In any category \(\C\), show that 
+  \[\xymatrix{A\ar[rr]_{c_1}&&C&&B\ar[ll]^{c_2}}\]
+  is a coproduct diagram just if for every object \(Z\), the map 
+  \begin{align*}
+    \hom(C,Z) &\to \hom(A,Z) \times \hom(B,Z)\\
+    f &\mapsto \langle f \circ c_1, f \circ c_2 \rangle
+  \end{align*}
+  is an iso. Do this by using duality, taking the corresponding fact about
+  products as given.
+
+  \begin{Solution}
+    From \S2.7 we have the fact that 
+    \[\xymatrix{A\ar@{<-}[rr]_{p_1}&&C&&B\ar@{<-}[ll]^{p_2}}\]
+    is a product diagram precisely when for every object \(X\) the map
+    \begin{align}
+      \vartheta_X: \hom(X,P) &\to     \hom(X, A) \times \hom(X, B)\label{eq}\\
+                   x         &\mapsto [p_1\circ x, p_2 \circ x]\nonumber
+    \end{align}
+    is an iso. That is, for any diagram \(A \xleftarrow{a} Y\xrightarrow{b} B\)
+    there is a unique \(u: Y \to C\) making the induced diagrams commute
+    precisely when \(\vartheta_X\) is an iso:
+
+    \[\xymatrix{
+      && Y\ar[ddll]_a\ar[ddrr]^b\ar@{..>}[dd]^u\\
+      &&&&\\
+      A\ar@{<-}[rr]_{p_1}&&C&&B\ar@{<-}[ll]^{p_2}
+    }\]
+    
+    Now that we have stated our problem in purely categorical terms we may apply
+    duality and get our result for free.\qed{}
+  \end{Solution}
+\end{BookProblem}
+
+\clearpage
+%%% 3.2
+\begin{BookProblem}{2}
+  Show in detail that the free monoid functor \(M\) preserves coproducts: for any
+  set \(A\), \(B\),
+  \[M(A) + M(B) \cong M(A + B)\quad\text{(canonically).}\]
+  Do this as indicated in the text by using the UMPs of the coproducts \(A + B\)
+  and \(M(A) + M(B)\) and of free monoids.\\
+
+  \note{We did this in class but it is worth working through the proof.}
+  \begin{Solution}
+    We begin by duplicating the free-monoid diagram from \S3.1, adding labels to
+    help us along (we will define these as we go).
+    \begin{equation}
+      \xymatrix{
+      & N & \\
+      %&&&&\\
+      M(A)\ar[r]^{j_A}\ar[ur]^f & M(A + B)\ar@{..>}[u] & M(B)\ar[l]_{j_B}\ar[lu]_g\\
+      %&&&&\\
+      A\ar[r]_{i_A}\ar[u]^{\eta_A} & A + B\ar[u]_{\eta_{A+B}} & B\ar[l]^{i_B}\ar[u]_{\eta_B}
+    }
+    \end{equation}
+
+    The bottom row comes from the UMP of \(A + B\) in \(\Sets\), and from the
+    UMP of \(M(X)\) we get maps \(\eta_*\) into the associated free monoids.
+    Next, define \(j_A\) and \(j_B\) to be the maps induced by the UMP of
+    \(M(A)\) and \(M(B)\) respectively:
+    \begin{equation}
+      \xymatrix{
+        M(A)\ar@{..>}[rr]^{j_A} && M(A + B)\\
+        &&\\
+        A\ar[uurr]_{\ \ {i_A}\circ \eta_{A + B}}\ar[uu]^{\eta_A} &&
+      }
+    \end{equation}
+
+    Now we want to show that \(M(A) \xlongrightarrow{j_A} M(A + B)
+    \xlongleftarrow{j_B} M(B)\) has the UMP of \(M(A) + M(B)\). To this end,
+    take diagram
+    \[ M(A) \xlongrightarrow{f} N \xlongleftarrow{g} M(B). \]
+
+    We may define function \(\varphi : A + B\) to \(N\) by
+
+    \[\varphi(x) = \begin{dcases*}
+      (f \circ\eta_A)(x) & if \(x \in A\)\\
+      (g \circ\eta_B)(x) & if \(x \in B\)
+    \end{dcases*}
+    \]
+    Apply the UMP of \(M(A + B)\) and we win.\qed{}
+  \end{Solution}
+\end{BookProblem}
+
+%%% 3.3
+\begin{BookProblem}{3}
+  Verify that the construction given in the text of the coproduct of monoids \(A
+  + B\) as a quotient of the free monoid \(M(|A| + |B|)\) really is a coproduct
+  in the category of monoids.
+  \begin{Solution}
+  \end{Solution}
+\end{BookProblem}
+
+%%% 3.4
+\begin{BookProblem}{4}
+  Show that the product of two powerset Boolean algebras \(\mathcal{P}(A)\) and
+  \(\mathcal{P}(B)\) is also a powerset, namely of the coproduct of the sets
+  \(A\) and \(B\),
+  \[\mathcal{P}(A) \times \mathcal{P}(B) \cong \mathcal{P}(A + B).\]
+  (Hint: determine the projections \(\pi_1 : \mathcal{P}(A + B) \to
+  \mathcal{P}(A)\) and \(\pi_2: \mathcal{P}(A + B) \to \mathcal{P}(B)\), and
+  check that they have the UMP of the product.)
+  \begin{Solution}
+  \end{Solution}
+\end{BookProblem}
+
+\section{Additional Exercises}
+%%% 2.16
+\begin{problem}[Awodey, 2.16]
+  In the category of types \(\C(\lambda)\) of the \(\lambda\)-calculus,
+  determine the product functor \(A, B \mapsto A \times B\) explicitly. Also
+  show that for any fixed type \(A\) there is a functor \(A \to (-) :
+  \C(\lambda) \to \C(\lambda)\), taking any type \(X\) to \(A \to X\).
+\end{problem}
+
+%%% 3.5
+\begin{problem}[Awodey, 3.5]
+  Consider the category of proofs of a natural deduction system with disjunction
+  introduction and elimination rules. Identify proofs under the equations
+  \[[p,q] \circ i_1 = p,\quad\quad [p,q] \circ i_2 = q\]
+  \[[r \circ i_1, r \circ i_2] = r\]
+  for any \(p : A \to C, q : B \to C\), and \(r : A + B \to C\). By passing to
+  equivalence classes of proofs awith respect to the equivalence relation
+  generated by these equations (i.e., two proofs are equivalent if you can get
+  one from the other by removing all such ``detours''). Show that the resulting
+  category does indeed have coproducts.
+  \begin{Solution}
+  \end{Solution}
+\end{problem}
+
+\end{document}

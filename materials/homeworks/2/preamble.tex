@@ -1,0 +1,175 @@
+
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{sectsty} % Allows customizing section commands
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[all,cmtip]{xy}
+\usepackage{centernot}
+\usepackage{color}
+\usepackage{bbm}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr} % Custom headers and footers
+\usepackage{geometry}
+\usepackage{mathpazo}
+
+\newif\ifsolutions
+\solutionstrue
+
+%\geometry{left=20mm,right=20mm,top=20mm}
+%\geometry{a5paper, left=8mm,right=8mm,top=15mm,bottom=25mm}
+
+%%% A5 paper size
+% \geometry{papersize={168mm, 210mm}}% , left=20mm,right=20mm,top=30mm,bottom=40mm}
+%%% Customized Paper size
+%\geometry{papersize={180mm, 210mm}, left=28mm,right=28mm,top=15mm,bottom=25mm}
+
+\newcommand{\cat}[1]{\mathbf{{#1}}}
+\newcommand{\note}[1]{{\small \textit{\textbf{Note:} {#1}}}}
+\def\C{\cat{C}}
+\def\D{\cat{D}}
+\def\E{\cat{E}}
+\def\F{\cat{F}}
+\def\Sets{\cat{Sets}}
+\def\Grp{\cat{Grp}}
+\def\Mon{\cat{Mon}}
+\def\Ab{\cat{Ab}}
+\def\Pos{\cat{Pos}}
+\def\Cat{\cat{Cat}}
+\def\Top{\cat{Top}}
+\def\0{\cat{0}}
+\def\1{\cat{1}}
+\def\2{\cat{2}}
+\def\3{\cat{3}}
+\def\singleton{\{*\}}
+\def\op{\textnormal{op}}
+
+
+
+\def\H{\mathbb H}
+\def\Q{\mathbb Q}
+\def\R{\mathbb R}
+\def\Z{\mathbb Z}
+\def\Re{\textbf{Re}}
+\def\Im{\textbf{Im}}
+\def\id{\mathbbm{1}}
+
+%%% ARROWS
+\def\epi{\twoheadrightarrow}
+\def\ipe{\twoheadleftarrow}
+\def\mono{\rightarrowtail}
+\def\onom{\rightarrowtail}
+\def\xto{\xrightarrow}
+\def\xinclusion{\xhookrightarrow}
+\makeatletter
+\providecommand*{\twoheadrightarrowfill@}{%
+  \arrowfill@\relbar\relbar\twoheadrightarrow
+}
+\providecommand*{\twoheadleftarrowfill@}{%
+  \arrowfill@\twoheadleftarrow\relbar\relbar
+}
+\providecommand*{\rightarrowtailfill@}{%
+  \arrowfill@\relbar\relbar\rightarrowtail
+}
+\providecommand*{\leftarrowtailfill@}{%
+  \arrowfill@\leftarrowtail\relbar\relbar
+}
+\newcommand{\xepi}[2][]{\ext@arrow 0359\twoheadrightarrowfill@{#1}{#2}}
+\newcommand{\xipe}[2][]{\ext@arrow 0359\twoheadleftarrowfill@{#1}{#2}}
+\newcommand{\xmono}[2][]{\ext@arrow 0359\rightarrowtailfill@{#1}{#2}}
+\newcommand{\xonom}[2][]{\ext@arrow 0359\leftarrowtailfill@{#1}{#2}}
+\makeatother
+
+%THEOREMS
+\newenvironment{Solution}
+  {\ifsolutions\begin{tcolorbox}[colback=blue!8!white,colframe=blue!35!black,title=Solution]}
+  {\end{tcolorbox}\fi}
+
+
+\newcounter{booksection}
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{bookproblem}{Problem}[booksection]
+\newtheorem*{lemmma}{Lemma}
+\newtheorem*{solution}{Solution}
+\newtheorem*{fact}{Fact}
+\newtheorem*{definition}{Definition}
+\newtheorem*{definitions}{Definitions}
+\theoremstyle{theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newcommand{\irr}{\text{irr}}
+\newcommand{\ol}[1]{\overline{#1}}
+%NEW COMMANDS
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\ttt}[1]{\texttt{#1}}
+\newcommand{\includecode}[2][Python]{\lstinputlisting[caption=#2, escapechar=, style=custom#1]{#2}}
+\newcommand{\embf}[1]{\textbf{\emph{#1}}}
+\newcommand{\tbf}[1]{\textbf{#1}}
+	% TOPOLOGY COMMANDS
+\newcommand{\intr}[1]{\accentset{\circ}{#1}}
+\newcommand{\bndr}{\partial}
+\newcommand{\clsr}[1]{\overline{#1}}
+\newcommand{\tpl}[1][]{\mathscr{T}_{#1}}
+	% COMPLEX VARIABLE COMMANDS
+\newcommand{\Log}{\text{Log}}
+\newcommand{\partials}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\hessian}[3]{\left(\begin{array}{cc}\frac{\partial^2 #1}{\partial #2^2} & \frac{\partial^2 #1}{\partial #1 \partial #2} \\ \frac{\partial^2 u}{\partial #1\partial #2} & \frac{\partial^2 #1}{\partial #2^2}\end{array}\right)}
+\newcommand{\Res}{\text{Res}}
+    % LINEAR ALGEBRA COMMANDS
+\newcommand{\Span}{\text{span}}
+\newcommand{\Null}{\text{Null}}
+\newcommand{\Rank}{\text{rank}}
+\newcommand{\Mat}[2]{\,\text{Mat}_{{#1}\times{#2}}}
+\renewcommand{\u}{\vec u}
+\renewcommand{\v}{\vec v}
+\newcommand{\w}{\vec w}
+\newcommand{\x}{\vec x}
+\newcommand{\y}{\vec y}
+\newcommand{\z}{\vec z}
+\newcommand{\im}{\text{im}}
+    % ALGEBRA COMMANDS
+\newcommand{\Stab}[2]{\,\text{Stab}_{#1}({#2})}
+\newcommand{\Cent}[2]{\,\text{C}_{#1}({#2})}
+\newcommand{\Center}[1]{\,\text{Z}({#1})}
+\newcommand{\Norm}[2]{\,\text{N}_{#1}({#2})}
+\newcommand{\subgp}{\leq}
+\newcommand{\Orb}[1]{\,{#1}\text{-orbit}}
+\newcommand{\orbit}[2]{\,\text{orbit}_{#1}({#2})}
+\newcommand{\Inn}[1]{\,\text{Inn}({#1})}
+\newcommand{\Aut}[1]{\,\text{Aut}({#1})}
+\newcommand{\Syl}{\,\text{Syl}}
+\newcommand{\normal}{\trianglelefteq}
+    % OTHER
+\newcommand{\owl}{\widehat{\dbinom{\odot_\text{v}\odot}{\wr}}}
+
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+

@@ -1,0 +1,221 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{preamble.tex}
+
+\title{\normalfont\normalsize 
+\textsc{Umass Amherst} \\ [10pt]% Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Fun With Cats --- Homework 2 \\ % The assignment title
+\horrule{2pt} \\[-0.8cm] % Thick bottom horizontal rule
+}
+\author{} % Your name
+\date{\normalsize\today} % Today's date or a custom date
+\begin{document}
+\maketitle % Print the title
+Hi all, here are problems for this week. I've typed them up since I know that
+not everyone has the current text, and I also wanted to add a couple extra
+problems from Mac Lane as `extra credit'.\\
+
+The first few problems are on the easier side, mainly ensuring that you
+understand definitions. Problems 11 and 12 make you work with UMPs which is much
+more useful than watching someone prattle on about them. I've also included
+three problems at the end which are a bit harder but should be doable. Problem 2
+in particular is a good one as this has a very nice `algebraic' solution that
+comes up in a number of contexts, including a proof of Brouwer's Fixed Point
+Theorem. The last of the Mac Lane problems is fairly simple---there's really
+only one thing you can do.
+
+\section*{Chapter 1: Categories}
+\setcounter{section}{1}
+
+\setcounter{problem}{4}
+\def\dom{\cat{dom}}
+\def\cod{\cat{cod}}
+
+%%% PROBLEM 5
+\begin{problem}
+  For any category \(\C\), define a functor \(U:\C/C \to \C\) from the slice
+  category over an object \(C\) that ``forgets about C.'' Find a functor \(F :
+  \C / C \to \C^\to\)  to the arrow category such that \(\dom \circ F =
+  U\).\footnote{Recall that \(\C^\to\) is equipped with two functors
+  \begin{equation*}
+    \xymatrix{\C & \C^\to\ar[l]_\dom \ar[r]^\cod & \C}.
+  \end{equation*}
+  }\qed{}
+\end{problem}
+
+%%% PROBLEM 6
+\begin{problem} 
+  Construct the ``coslice category'' \(C/\C\) of a category \(\C\) under an
+  object \(C\) from the slice category \(\C/C\) and the ``dual category''
+  operation \(-^\op\).
+\end{problem}
+
+%%% PROBLEM 7
+\begin{problem}
+  Let \(\{a,b\}\) be any set with exactly 2 elements \(a\) and \(b\). Define a
+  functor \(F:\Sets / 2 \to \Sets \times \Sets\) with \(F(f : X \to 2) =
+  (f^{-1}(a), f^{-1}(b))\). Is this an isomorphism of categories? What about the
+  analogous situation with a one-lement set \(1 = \{a\}\) instead of
+  \(2\)?\qed{}
+\end{problem}
+
+%%% PROBLEM 9
+\setcounter{problem}{8}
+\begin{problem}
+  Describe the free categories on the following graphs by determining their
+  objects, arrows, and composition operations.
+  \begin{enumerate}[(a)]
+    \item
+      \begin{equation*}
+        \xymatrix{ a \ar[rr]^e && b }
+      \end{equation*}
+
+    \item
+      \begin{equation*}
+        \xymatrix{a\ar@<0.5ex>[rr]^e && b\ar@<0.5ex>[ll]^f}
+      \end{equation*}
+
+    \item 
+      \begin{equation*}
+        \xymatrix{a \ar[rr]^e\ar[ddrr]_g && b\ar[dd]^f \\ && \\ && c}
+      \end{equation*}
+
+    \item 
+      \begin{equation*}
+        \xymatrix{
+          a \ar@<0.5ex>[rr]^e && b\ar@<0.5ex>[ll]^h\ar[dd]^f & d\\ 
+          && &\\
+                              && c \ar[uull]^g & }
+      \end{equation*}
+  \end{enumerate}\qed{}
+\end{problem}
+
+
+%%% PROBLEM 10
+\begin{problem}
+  How may free categories on graphs are there which have exactly six arrows?
+  Draw the graphs that generate these categories.\qed{}
+\end{problem}
+
+
+%%% PROBLEM 11
+\begin{problem}
+  Show that the free monoid functor
+  \begin{equation*}
+    M : \Sets \to \Mon
+  \end{equation*}
+
+  exists in two different ways:
+  \begin{enumerate}[(a)]
+    \item Assume the particular choice \(M(X) = X^*\) and define its effect
+      \[ M(f) : M(A) \to M(B)\]
+      on a function \(f : A \to B\) to be
+      \[M(f)(a_1 \cdots a_k) = f(a_1) \cdots f(a_k), a_i \in A.\]
+    \item Assume only the UMP of the free monoid and use it to determine \(M\)
+      on functions, showing the result to be a functor.
+  \end{enumerate}
+
+  Reflect on how these two approaches are related.\qed{}
+\end{problem}
+
+%%% PROBLEM 12
+\begin{problem}
+  Verify the UMP for free categories on graphs. Specifically, let \(\C(G)\) be
+  the free category on the graph \(G\) and \(i : G \to U(\C(G))\) be the
+  `inclusion' graph homomorphism taking vertices and edges to themselves. Show
+  that for any category \(\D\) and graph homomorphism \(f : G \to U(\D)\), there
+  is a unique functor 
+  \[\bar h : \C(G) \to \D\] 
+  with 
+  \[U(\bar h) \circ i = h.\]
+
+\textbf{Note:} refer to the UMP for all the movers and shakers in the above
+  problem.\qed{}
+\end{problem}
+
+\section*{Some (Slightly Adapted) Problems from Mac Lane}
+
+Note that these are more difficult (and thus more fun).
+
+\setcounter{problem}{0}
+\begin{problem}
+  Recall the following categories:
+  \begin{itemize}
+    \item \(\1\):\begin{equation*}
+        *
+    \end{equation*}
+  \item \(\2\): \begin{equation*}
+      \xymatrix{\ast\ar[r] & \star}
+    \end{equation*}
+  \item \(\3\): \begin{equation*}
+      \xymatrix{\ast\ar[r]\ar[rd] & \star\ar[d]\\&\circ}
+    \end{equation*}
+  \end{itemize}
+
+  Given a category \(\C\), describe the functors of each of the following forms:
+  \begin{itemize}
+    \item \(\1 \to \C\)
+    \item \(\2 \to \C\)
+    \item \(\3 \to \C\)
+  \end{itemize}
+
+  What is a nice way to characterize these functors? That is, how would you
+  characterize the class of functors \(\1 \to \C\)? \(\2 \to \C\)? \(\3 \to
+  \C\)?\qed{}
+\end{problem}
+
+\begin{problem} Recall that a group \(G\) is \textit{abelian} if \(ab = ba\) for
+  all \(a,b \in G\). Let \(\Ab\) be the category of abelian groups and group
+  homomorphisms and \(\Grp\) be the category of groups and group
+  homomorphisms.
+  For a group \(G\) define the \textit{center} of \(G\), denoted \(Z(G)\), to be
+  the set of all \(x \in G\) that commutes with all of \(G\); that is,
+  \[Z(G) = \{x \in G : \forall y \in G xy = yx\}.\]
+  It is a fact that \(Z(G)\) is a subgroup of \(G\) \textit{(proof!)}.
+  Show that there is no functor sending each group \(G\) to its center.
+  (\textbf{hint:} recall that \(S_n\) is permutation group on \(n\) elements,
+  called the symmetric group. Consider \(S_2 \to S_3 \to S_2\)).\\
+
+  \textbf{Note:} in the statement of the problem in Mac Lane (which is much
+  shorter and has none of the background I give) it is a bit ambiguous what is
+  meant by ``send each group to its center''. However there is only one
+  reasonable interpretation of this functor: this \(F\) would map each group
+  \(G\) to its center, taking each element \(z \in Z(G)\) to itself. In
+  mathematics we call this a retract of \(G\) onto \(Z(G)\): that is, \(F\circ F
+  = F\), this term being rooted in topology (as far as I know). We will see more
+  of retractions in section 2.1 next Thursday. If I recall I'll bring in my copy
+  of Hatcher's Algebraic Topology as this gives motivation for the name (much of
+  the motivation for the subject comes from topology so I will continue to
+  reference it).\\
+
+  Speaking of topology, this problem above has a very similar flavor to (one of)
+  the (many) proof(s) of the following fixed point theorem: 
+  \begin{theorem}[Brouwer]
+    Every continuous function from a disk to itself has a fixed point.
+  \end{theorem}
+  We won't prove this since it involves some background in fundamental groups
+  but the punchline of the proof is the same as the proof here.\qed{}
+
+\end{problem}
+
+\begin{problem}
+  Find two different functors \(F: \Grp \to \Grp\) such that the object map
+  \(F(G) = G\) is the identify.\qed{}
+\end{problem}
+
+\end{document}

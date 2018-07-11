@@ -1,0 +1,7 @@
+/fun-with-cats
+
+# Some latex stuff
+*.log
+*.pdf
+*.out
+*.aux
